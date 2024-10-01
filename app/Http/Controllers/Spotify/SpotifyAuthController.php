@@ -25,14 +25,13 @@ class SpotifyAuthController extends Controller
 
     public function authorize()
     {
-        $scopes = 'user-read-private user-read-email user-read-playback-state user-modify-playback-state user-read-currently-playing';
 
         $csrf = Str::random(40);
 
         $request = [
             'response_type' => 'code',
             'client_id' => $this->client_id,
-            'scope' => $scopes,
+            'scope' => SpotifyAuthService::SCOPES,
             'redirect_uri' => route('spotify.callback'),
             'state' => $csrf,
         ];

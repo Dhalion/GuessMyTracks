@@ -15,6 +15,8 @@ class SpotifyAuthService
     private string $client_id;
     private string $client_secret;
 
+    public const SCOPES = 'user-read-private user-read-email user-read-playback-state user-modify-playback-state user-read-currently-playing user-library-read';
+
     public function __construct()
     {
         $this->client_id = config('spotify.client_id');
@@ -40,6 +42,16 @@ class SpotifyAuthService
         if ($response->failed()) {
             return false;
         }
+
+        $accessToken = $response->json()['access_token'];
+        $refreshToken = $response->json()['refresh_token'];
+
+        // save it to session
+        session(['spotify_access_token' => $accessToken]);
+        session(['spotify_refresh_token' => $refreshToken]);
+
+        $spotifyUserService = new SpotifyUserService();
+        $spotifyUserService->createLocalUser($accessToken, $refreshToken);
 
         return true;
     }
