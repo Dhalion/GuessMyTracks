@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('track_user', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('track_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignUuid('track_id')->constrained();
+            $table->foreignUuid('user_id')->constrained();
             $table->timestamps();
         });
     }
