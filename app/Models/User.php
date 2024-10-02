@@ -26,6 +26,8 @@ class User extends Authenticatable
         'email',
         'image_url',
         'total_tracks',
+        'total_points',
+        'game_points',
         'password',
     ];
 
