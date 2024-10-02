@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('artist');
             $table->string('album');
             $table->date('release_date');
-            $table->string('image_url');
+            $table->string('image_url')->nullable();
             $table->timestamps();
         });
     }
