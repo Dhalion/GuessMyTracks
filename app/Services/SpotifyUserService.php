@@ -51,5 +51,8 @@ class SpotifyUserService
         $user->spotify_access_token = $accessToken;
         $user->spotify_refresh_token = $refreshToken;
         $user->saveOrFail();
+
+        // save the user to the session
+        session(['user' => $user]);
     }
 }

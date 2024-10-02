@@ -64,6 +64,6 @@ class SpotifyAuthController extends Controller
             return redirect()->route('home')->with('error', 'Failed to get access token from Spotify.');
         }
 
-        return redirect()->route('home')->with('success', 'Successfully authorized with Spotify.');
+        return redirect()->route('game')->with('success', 'Successfully authorized with Spotify.');
     }
 }
