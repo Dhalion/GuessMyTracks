@@ -24,7 +24,7 @@
         <p>Refresh Token: {{ $session->get('spotify_refresh_token') }}</p>
     </div>
 
-    <a href="{{ route('user') }}">Go To User</a>
+    <a href="{{ route('user.overview') }}">Go To User</a>
 </body>
 
 </html>

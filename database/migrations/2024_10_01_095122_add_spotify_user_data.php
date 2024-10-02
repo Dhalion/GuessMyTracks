@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('username')->after('name')->nullable();
             $table->string('image_url')->after('email')->nullable();
-            $table->string('spotify_access_token', 2048)->after('image_url')->nullable();
+            $table->integer('total_tracks')->after('image_url')->nullable();
+            $table->string('spotify_access_token', 2048)->after('total_tracks')->nullable();
             $table->string('spotify_refresh_token', 2048)->after('spotify_access_token')->nullable();
             // make password nullable
             $table->string('password')->nullable()->change();
@@ -29,6 +30,7 @@ return new class extends Migration
         Schema::table('Users', function (Blueprint $table) {
             $table->dropColumn('username');
             $table->dropColumn('image_url');
+            $table->dropColumn('total_tracks');
             $table->dropColumn('spotify_access_token');
             $table->dropColumn('spotify_refresh_token');
             // make password not nullable
