@@ -34,7 +34,6 @@ class SpotifyUserService
             [
                 'name' => $profile['display_name'] ?? $profile['id'],
                 'email' => $profile['email'],
-                'password' => Hash::make(Str::random(32)), // Random password for OAuth users
                 'spotify_access_token' => $tokens['access_token'],
                 'spotify_refresh_token' => $tokens['refresh_token'],
                 'spotify_token_expires_at' => now()->addSeconds($tokens['expires_in']),

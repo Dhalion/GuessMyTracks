@@ -6,6 +6,7 @@ namespace App\Services\Spotify;
 
 use App\Exceptions\SpotifyException;
 use App\Models\User;
+use Illuminate\Log\Logger;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
@@ -114,6 +115,7 @@ class SpotifyAuthService
         $savedState = Session::pull('spotify_auth_state');
 
         if (!$savedState || $savedState !== $state) {
+            logger()->warning(sprintf('Invalid CSRF Token! Received %s, expected %s', $state, $savedState));
             throw SpotifyException::invalidState();
         }
     }

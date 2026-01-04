@@ -37,11 +37,11 @@ class SpotifyAuthController extends Controller
         $error = $request->query('error');
 
         if ($error) {
-            return redirect()->route('page.main')->with('error', "Spotify access denied: {$error}");
+            return redirect()->route('login')->with('error', "Spotify access denied: {$error}");
         }
 
         if (!$code || !$state) {
-            return redirect()->route('page.main')->with('error', 'Invalid request from Spotify.');
+            return redirect()->route('login')->with('error', 'Invalid request from Spotify.');
         }
 
         try {
@@ -51,10 +51,10 @@ class SpotifyAuthController extends Controller
             return redirect()->route('page.main')->with('success', 'Successfully connected with Spotify!');
         } catch (SpotifyException $e) {
             Log::error('Spotify authentication error', ['message' => $e->getMessage()]);
-            return redirect()->route('page.main')->with('error', $e->getMessage());
+            return redirect()->route('login')->with('error', $e->getMessage());
         } catch (\Exception $e) {
             Log::error('Unexpected error during Spotify authentication', ['exception' => $e]);
-            return redirect()->route('page.main')->with('error', 'An unexpected error occurred.');
+            return redirect()->route('login')->with('error', 'An unexpected error occurred.');
         }
     }
 }
