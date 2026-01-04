@@ -3,7 +3,7 @@
 {
   dotenv.enable = true;
 
-  packages = [ pkgs.git pkgs.yarn pkgs.php84 ];
+  packages = [ pkgs.git pkgs.yarn pkgs.php84 pkgs.bun ];
 
   languages.javascript = {
     enable = lib.mkDefault true;
